@@ -9,5 +9,7 @@ Create env: `conda env create -f environment.yml`
 Use model's checkpoint or train model: `sbatch sbatch_train.sh`
 
 Generate explanation: `sbatch sbatch_gen_expl.sh`
+
 Create visualizations of explanations: `sbatch sbatch_vis.sh`
+
 Evaluate explanations: `sbatch sbatch_eval.sh`
