@@ -1,4 +1,4 @@
-# PyTorch Implementation of [Towards Evaluating Explanations of Vision Transformers for Medical Imaging]
+# PyTorch Implementation of [Towards Evaluating Explanations of Vision Transformers for Medical Imaging](https://arxiv.org/abs/2304.06133)
 
 Create env: `conda env create -f environment.yml`
 
