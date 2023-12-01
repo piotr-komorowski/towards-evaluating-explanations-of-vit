@@ -124,7 +124,7 @@ save_results(results_explain_txt, results_explain_c_csv, effective_complexity_lr
 def calc_avg_sensitivity(a_batch_expl, **kwargs):
     name = kwargs['name']
     if name == 'lrp':
-        explain_func = generate_lrp_goodformat
+        explain_func = generate_lrp
         explain_func_kwargs = {'attribution_generator': attribution_generator}
     elif name == 'attn':
         head_fusion = kwargs['head_fusion']
@@ -132,7 +132,7 @@ def calc_avg_sensitivity(a_batch_expl, **kwargs):
         explain_func = generate_attn
         explain_func_kwargs = {'head_fusion': head_fusion, 'discard_ratio':discard_ratio}
     elif name == 'lime':
-        explain_func = generate_lime_new
+        explain_func = generate_lime
         explain_func_kwargs = {'batch_predict': batch_predict}
     else:
         raise ValueError('name must be lrp, attn, or lime')

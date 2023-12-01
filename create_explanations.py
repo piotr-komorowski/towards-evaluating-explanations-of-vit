@@ -102,7 +102,7 @@ np_y_batch = y_batch.numpy()
 
 
 print('Generating explanations...')
-np_a_batch_lrp = generate_lrp_goodformat(x_batch, attribution_generator=attribution_generator)
+np_a_batch_lrp = generate_lrp(x_batch, attribution_generator=attribution_generator)
 np_a_batch_attn_mean = generate_attn(x_batch, model, head_fusion='mean', discard_ratio=0, device=device)
 np_a_batch_attn_min = generate_attn(x_batch, model, head_fusion='min', discard_ratio=0, device=device)
 np_a_batch_attn_max = generate_attn(x_batch, model, head_fusion='max', discard_ratio=0.99, device=device)
