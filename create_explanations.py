@@ -9,7 +9,7 @@ from modules.layers_ours import Linear
 from baselines.ViT.ViT_LRP import vit_base_patch16_224 as vit_LRP_base
 from baselines.ViT.ViT_explanation_generator import LRP
 from utils_explain.visualize import generate_lrp, generate_lime, generate_attn
-from utils_explain.preprocess import preprocess_batch, batch_predict
+from utils_explain.preprocess import preprocess_batch
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 print(f'Device: {device}')
@@ -17,6 +17,18 @@ print(f'Device: {device}')
 CLS2IDX = {0: 'COVID-19', 1: 'Non-COVID', 2: 'Normal'}
 
 normalize = transforms.Normalize(mean=[0.56, 0.56, 0.56], std=[0.21, 0.21, 0.21])
+
+def batch_predict(images):
+    model.eval()
+    images = einops.rearrange(images, 'b h w c -> b c h w')
+    batch = torch.Tensor(np.stack(images))
+
+    model.to(device)
+    batch = batch.to(device)
+
+    logits = model(batch)
+    probs = torch.softmax(logits, dim=1)
+    return probs.detach().cpu().numpy()
 
 def get_pil_transform():
     transf = transforms.Compose([
